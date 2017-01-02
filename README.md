@@ -7,7 +7,7 @@ which can be used to send commands and responses back and fourth.
 First, the server script needs to be run to create the socket, bind it to a port and listen for clients.
 
 Second, the client script is run on another device (althoguh all current testing has been done locally),
-which connects to the IP and port of the server (hardcoded currently to simplify testing).
+which connects to the IP and port of the server (currently hardcoded to simplify testing).
 
 Third, the established connection is displayed on the serverside, and starts reading in any commands.
 The tricky part is reading in the console input and encodin it properly, and then decoding it on the client side.
