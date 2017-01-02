@@ -2,7 +2,7 @@
 Simple server, client reverse shell based on a tutorial by theNewBoston, but customized and improved (to some extend)
 
 These two scripts create a connection between two devices, a server and a client, 
-which cna be used to send commands and responses back and fourth.
+which can be used to send commands and responses back and fourth.
 
 First, the server script needs to be run to create the socket, bind it to a port and listen for clients.
 
