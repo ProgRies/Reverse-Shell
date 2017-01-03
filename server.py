@@ -22,7 +22,9 @@ def socket_create():
     except socket.error as msg:
         print("Socket Creation Error: " + str(msg))
 
-#Once socket is created, it needs to be bound to a port so that clients can reach it
+# Once socket is created, it needs to be bound to a port so that clients can reach it
+
+
 def socket_bind(host, port, s):
     try:
         # No need to re-initialize the global variables from socket_create()
@@ -37,6 +39,8 @@ def socket_bind(host, port, s):
 
 # After the socket has a connection, we call this function to obtain some information and initiate
 # the transmission of commands from this server script to the client device
+
+
 def socket_accept():
     connection, address = s.accept()
     # Improve string output using str.format() -> to - do list
@@ -46,6 +50,8 @@ def socket_accept():
 
 # This function reads in basic console input, encodes it to the proper format and then sends it
 # to the client device using the socket.send() function
+
+
 def send_commands(connection):
     while True:
         cmd = str(raw_input())
@@ -56,22 +62,22 @@ def send_commands(connection):
             s.close()
             sys.exit()
         if len(str.encode(cmd)) > 0:
-            connection.send(str.encode(cmd))
-            client_response = str(connection.recv(1024))
-            print(client_response, end="")
+            try:
+                connection.send(str.encode(cmd))
+                client_response = str(connection.recv(1024))
+                print(client_response, end="")
+            except socket.error as msg:
+                print("Socket Connection error: " + str(msg))
+                print("Connection ether closed or interrupted...")
+                break
 
-# Putting main in a seperate class is a bit redundant, but anyway, this is where we call the above functions
+# Putting main in a separate class is a bit redundant, but anyway, this is where we call the above functions
 # After these classes are successfully run, the client can connect to the socket
+
+
 def main():
     socket_create()
-    socket_bind()
+    socket_bind(host, port, s)
     socket_accept()
 
 main()
-
-
-
-
-
-
-
