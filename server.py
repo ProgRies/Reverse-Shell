@@ -23,11 +23,9 @@ def socket_create():
         print("Socket Creation Error: " + str(msg))
 
 #Once socket is created, it needs to be bound to a port so that clients can reach it
-def socket_bind():
+def socket_bind(host, port, s):
     try:
-        global host
-        global port
-        global s
+        # No need to re-initialize the global variables from socket_create()
         print("Binding Socket to Port: " + str(port))
         s.bind((host, port))
         print("Listening...")
@@ -41,6 +39,7 @@ def socket_bind():
 # the transmission of commands from this server script to the client device
 def socket_accept():
     connection, address = s.accept()
+    # Improve string output using str.format() -> to - do list
     print("Connection established with IP: " + str(address[0]) + " | Port: " + str(address[1]))
     send_commands(connection)
     connection.close()
