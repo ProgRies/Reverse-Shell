@@ -1,5 +1,5 @@
 # Reverse-Shell
-Simple server, client reverse shell based on a tutorial by theNewBoston, but customized and improved (to some extend)
+A Simple server, client reverse shell based on a tutorial by theNewBoston, but customized and improved (to some extend).
 
 These two scripts create a connection between two devices, a server and a client, 
 which can be used to send commands and responses back and fourth.
